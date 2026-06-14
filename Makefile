@@ -31,6 +31,7 @@ LIBFT		= $(LIBFT_DIR)/libft.a
 SRCS		= \
 	$(SRC_DIR)/main/main.c \
 	$(SRC_DIR)/main/minishell.c \
+	$(SRC_DIR)/main/read_line_loop.c \
 	$(SRC_DIR)/utils/free_arr.c
 
 OBJS		= $(SRCS:.c=.o)

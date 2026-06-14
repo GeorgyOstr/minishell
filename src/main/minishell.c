@@ -6,7 +6,7 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:08:42 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/14 20:12:19 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/06/14 20:55:34 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int minishell(char **envp)
     t_shell shell;
 
     ms_init_env(&shell, envp);
-
+    read_line_loop(&shell);
 
     free_arr(shell.envp);
     return (shell.last_status);
