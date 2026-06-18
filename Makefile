@@ -32,7 +32,12 @@ SRCS		= \
 	$(SRC_DIR)/main/main.c \
 	$(SRC_DIR)/main/minishell.c \
 	$(SRC_DIR)/main/read_line_loop.c \
-	$(SRC_DIR)/utils/free_arr.c
+	$(SRC_DIR)/utils/free_arr.c \
+	$(SRC_DIR)/lexer/lexer.c \
+	$(SRC_DIR)/main/make_cmd.c \
+	$(SRC_DIR)/utils/clear_cmd.c \
+	$(SRC_DIR)/utils/free_tokens.c\
+# 	$(SRC_DIR)/do_cmd/do_cmd.c 
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -66,12 +71,15 @@ $(LIBFT):
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	$(MAKE) -C $(LIBFT_DIR) clean
-	rm -f $(OBJS)
+	@$(MAKE) -C $(LIBFT_DIR) clean
+	@rm -f $(OBJS)
+	@echo "clean complete"
 
-fclean: clean
-	$(MAKE) -C $(LIBFT_DIR) fclean
-	rm -f $(NAME)
+fclean:
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@rm -f $(OBJS)
+	@rm -f $(NAME)
+	@echo "fclean complete"
 
 re: fclean all
 

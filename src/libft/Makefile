@@ -6,7 +6,7 @@
 #    By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/04 19:47:43 by hisasano          #+#    #+#              #
-#    Updated: 2026/06/14 19:54:59 by hisasano         ###   ########.fr        #
+#    Updated: 2026/06/18 18:09:58 by hisasano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,10 +85,10 @@ bonus: $(NAME)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(BONUS_OBJS)
+	@rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

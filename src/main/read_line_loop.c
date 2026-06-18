@@ -6,7 +6,7 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 20:56:01 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/14 22:37:10 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/06/17 19:26:00 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,20 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "minishell.h"
+
+static int     is_only_space(char *line);
+void read_line_loop(t_shell *shell);
+static void    handle_line(t_shell *shell, char *line);
+
+static int     is_only_space(char *line)
+{
+    while(line)
+    {
+        if(*line != ' ')
+            return (0);
+    }
+    return (1);
+}
 
 void read_line_loop(t_shell *shell)
 {
@@ -38,13 +52,9 @@ void    handle_line(t_shell *shell, char *line)
         add_history(line);
     if (is_only_space(line))
         return ;
-    make_cmd(shell, line);//Lexer → Perser
-    do_cmd(shell);
-    clear_cmd(shell);
-}
-
-static int     is_only_space(char *line)
-{
-        
-
+    if (make_cmd(shell, line))
+        return ;//Lexer → Perser
+    // if (do_cmd(shell))
+    //     return ;
+    // clear_cmd(shell);
 }

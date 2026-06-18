@@ -6,7 +6,7 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:08:42 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/14 20:55:34 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/06/17 19:19:18 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,7 @@
 
 static void	ms_init_env(t_shell *shell, char **envp);
 static char	**dup_envp(char **arr);
-
-int minishell(char **envp)
-{
-    t_shell shell;
-
-    ms_init_env(&shell, envp);
-    read_line_loop(&shell);
-
-    free_arr(shell.envp);
-    return (shell.last_status);
-}
+int minishell(char **envp);
 
 static void	ms_init_env(t_shell *shell, char **envp)
 {
@@ -36,6 +26,7 @@ static void	ms_init_env(t_shell *shell, char **envp)
 	shell->envp = dup_envp(envp);
 	if (!shell->envp)
 		perror("minishell");
+        //check the output later.
 	return ;
 }
 
@@ -65,4 +56,15 @@ static char **dup_envp(char **arr)
         ar_count++;
     }
     return(result);
+}
+
+int minishell(char **envp)
+{
+    t_shell shell;
+
+    ms_init_env(&shell, envp);
+    read_line_loop(&shell);
+
+    free_arr(shell.envp);
+    return (shell.last_status);
 }

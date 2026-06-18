@@ -6,7 +6,7 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:42:54 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/14 22:19:47 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/06/17 19:25:48 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_shell
     char **envp;
     int last_status;
     int should_exit;
-    t_cmd cmd;
+    t_cmd *cmd;
 }   t_shell;
 
 // i int last_status;　
@@ -28,5 +28,6 @@ typedef struct s_shell
 
 int minishell(char **envp);
 void read_line_loop(t_shell *shell);
+int	make_cmd(t_shell *shell, char *line);
 
 #endif

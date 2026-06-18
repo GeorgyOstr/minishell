@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_arr.c                                         :+:      :+:    :+:   */
+/*   free_tokens.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/14 19:39:08 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/17 19:20:49 by hisasano         ###   ########.fr       */
+/*   Created: 2026/06/17 18:53:15 by hisasano          #+#    #+#             */
+/*   Updated: 2026/06/17 19:32:14 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "utils.h"
+#include "token.h"
+#include "minishell.h"
 
-char **free_arr(char **arr);
+void free_tokens(t_token *tokens);
 
-char **free_arr(char **arr)
+void free_tokens(t_token *tokens)
 {
-    size_t i;
+    t_token *next;
 
-    i = 0;
-
-    if (!arr)
-        return (NULL);
-    while(arr[i])
-        free(arr[i++]);
-    free(arr);
-    return (NULL);
+    while(tokens)
+    {
+        next = tokens->next;
+        free(tokens->value);
+        free(tokens);
+        tokens = next;
+    }
 }
