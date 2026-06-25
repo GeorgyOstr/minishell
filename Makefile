@@ -32,12 +32,17 @@ SRCS		= \
 	$(SRC_DIR)/main/main.c \
 	$(SRC_DIR)/main/minishell.c \
 	$(SRC_DIR)/main/read_line_loop.c \
-	$(SRC_DIR)/utils/free_arr.c \
-	$(SRC_DIR)/lexer/lexer.c \
 	$(SRC_DIR)/main/make_cmd.c \
+	$(SRC_DIR)/lexer/lexer.c \
+	$(SRC_DIR)/parser/parse_pipe.c \
+	$(SRC_DIR)/parser/parse_command.c \
+	$(SRC_DIR)/parser/add_word.c \
+	$(SRC_DIR)/utils/free_arr.c \
 	$(SRC_DIR)/utils/clear_cmd.c \
 	$(SRC_DIR)/utils/free_tokens.c\
-# 	$(SRC_DIR)/do_cmd/do_cmd.c 
+	$(SRC_DIR)/execve/exec_ast.c \
+	$(SRC_DIR)/execve/find_cmd_path.c \
+	$(SRC_DIR)/execve/exec_utils.c
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -45,14 +50,14 @@ OBJS		= $(SRCS:.c=.o)
 # Readline      #
 #################
 
-UNAME_S := $(shell uname -s)
+UNAME_S		:= $(shell uname -s)
 
 ifeq ($(UNAME_S),Darwin)
 	READLINE_PREFIX := $(shell brew --prefix readline)
 	INCLUDES += -I$(READLINE_PREFIX)/include
-	LIBS = -L$(READLINE_PREFIX)/lib -lreadline
+	LIBS	= -L$(READLINE_PREFIX)/lib -lreadline
 else
-	LIBS = -lreadline
+	LIBS	= -lreadline
 endif
 
 #################
@@ -71,15 +76,12 @@ $(LIBFT):
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	@$(MAKE) -C $(LIBFT_DIR) clean
-	@rm -f $(OBJS)
-	@echo "clean complete"
+	$(MAKE) -C $(LIBFT_DIR) clean
+	rm -f $(OBJS)
 
-fclean:
-	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@rm -f $(OBJS)
-	@rm -f $(NAME)
-	@echo "fclean complete"
+fclean: clean
+	$(MAKE) -C $(LIBFT_DIR) fclean
+	rm -f $(NAME)
 
 re: fclean all
 

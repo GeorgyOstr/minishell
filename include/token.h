@@ -6,7 +6,7 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 21:52:15 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/17 18:40:02 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/06/19 14:46:26 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_token
 
 int     lexer(t_token **tokens, char *line);
 void	free_tokens(t_token *token);
-void	print_tokens(t_token *token);
 
 #endif
 

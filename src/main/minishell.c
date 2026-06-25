@@ -6,29 +6,18 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:08:42 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/17 19:19:18 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/06/23 18:28:07 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "minishell.h"
+#include "shell.h"
 #include "libft.h"
 #include "utils.h"
 
 static void	ms_init_env(t_shell *shell, char **envp);
 static char	**dup_envp(char **arr);
 int minishell(char **envp);
-
-static void	ms_init_env(t_shell *shell, char **envp)
-{
-	shell->last_status = 0;
-	shell->should_exit = 0;
-	shell->envp = dup_envp(envp);
-	if (!shell->envp)
-		perror("minishell");
-        //check the output later.
-	return ;
-}
 
 static char **dup_envp(char **arr)
 {
@@ -56,6 +45,17 @@ static char **dup_envp(char **arr)
         ar_count++;
     }
     return(result);
+}
+
+static void	ms_init_env(t_shell *shell, char **envp)
+{
+	shell->last_status = 0;
+	shell->should_exit = 0;
+	shell->envp = dup_envp(envp);
+	if (!shell->envp)
+		perror("minishell");
+        //check the output later.
+	return ;
 }
 
 int minishell(char **envp)
