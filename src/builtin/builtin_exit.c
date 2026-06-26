@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_utils.c                                       :+:      :+:    :+:   */
+/*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/25 19:33:37 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/25 20:18:39 by hisasano         ###   ########.fr       */
+/*   Created: 2026/06/26 23:16:07 by hisasano          #+#    #+#             */
+/*   Updated: 2026/06/26 23:20:11 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "shell.h"
+#include "builtin.h"
 
-char	*get_env_value(char **envp, char *key)
+int     exec_exit(char **argv, t_shell *shell)
 {
-	int		i;
-	size_t	len;
-
-	if (!envp || !key)
-		return (NULL);
-	len = ft_strlen(key);
-	i = 0;
-	while (envp[i])
-	{
-		if (ft_strncmp(envp[i], key, len) == 0
-			&& envp[i][len] == '=')
-			return (envp[i] + len + 1);
-		i++;
-	}
-	return (NULL);
+    (void)argv;
+    shell->should_exit = 1;
+    return (shell->last_status);
 }
