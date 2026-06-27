@@ -6,13 +6,14 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 21:37:10 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/25 20:13:13 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/06/27 22:29:44 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
 #include "libft.h"
 #include "shell.h"
+#include "builtin.h"
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -51,6 +52,7 @@ int	exec_cmd(t_shell *shell, t_ast *node)
 
 	if (!node || !node->argv || !node->argv[0])
 		return (0);
+
 	if (is_builtin(node->argv[0]))
 		return (exec_builtin(shell, node->argv));
 	pid = fork();

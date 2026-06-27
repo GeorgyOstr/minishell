@@ -6,15 +6,16 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 20:56:01 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/25 19:54:09 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/06/27 22:39:13 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 #include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 #include <readline/history.h>
 #include <readline/readline.h>
-#include <stdlib.h>
 
 static int	is_only_space(char *line);
 void		read_line_loop(t_shell *shell);
@@ -39,19 +40,24 @@ void	handle_line(t_shell *shell, char *line)
 		return ;
 	if (make_cmd(shell, line))
 		return ;
-    shell->last_status = exec_ast(shell, shell->node);
-    free_ast(shell->node);
-    shell->node = NULL;
+	shell->last_status = exec_ast(shell, shell->node);
+	free_ast(shell->node);
+	shell->node = NULL;
 }
 
 void	read_line_loop(t_shell *shell)
 {
 	char	*line;
+	char	*prompt;
 
-	// (void)shell;
-	while (1)
+	rl_outstream = stderr;
+	while (!shell->should_exit)
 	{
-		line = readline("minishell$ ");
+		if (isatty(STDIN_FILENO))
+			prompt = "minishell$ ";
+		else
+			prompt = "";
+		line = readline(prompt);
 		if (line == NULL)
 			break ;
 		handle_line(shell, line);

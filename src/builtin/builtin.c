@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_utils.c                                    :+:      :+:    :+:   */
+/*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 20:18:33 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/25 20:22:25 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/06/27 21:39:32 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,18 @@ int	is_builtin(char *cmd)
 int	exec_builtin(t_shell *shell, char **argv)
 {
 	if (ft_strncmp(argv[0], "echo", 5) == 0)
-		return (builtin_echo(argv));
+		return (exec_echo(argv));
 	if (ft_strncmp(argv[0], "pwd", 4) == 0)
-		return (builtin_pwd());
+		return (exec_pwd());
 	if (ft_strncmp(argv[0], "cd", 3) == 0)
-		return (builtin_cd(shell, argv));
+		return (exec_cd(argv, shell));
 	if (ft_strncmp(argv[0], "env", 4) == 0)
-		return (builtin_env(shell));
+		return (exec_env(argv, shell));
 	if (ft_strncmp(argv[0], "export", 7) == 0)
-		return (builtin_export(shell, argv));
+		return (exec_export(argv, shell));
 	if (ft_strncmp(argv[0], "unset", 6) == 0)
-		return (builtin_unset(shell, argv));
+		return (exec_unset(argv, shell));
 	if (ft_strncmp(argv[0], "exit", 5) == 0)
-		return (builtin_exit(shell, argv));
+		return (exec_exit(argv, shell));
 	return (1);
 }

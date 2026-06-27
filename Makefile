@@ -42,7 +42,17 @@ SRCS		= \
 	$(SRC_DIR)/utils/free_tokens.c\
 	$(SRC_DIR)/execve/exec_ast.c \
 	$(SRC_DIR)/execve/find_cmd_path.c \
-	$(SRC_DIR)/execve/exec_utils.c
+	$(SRC_DIR)/execve/exec_utils.c \
+	$(SRC_DIR)/builtin/builtin.c \
+	$(SRC_DIR)/builtin/builtin_echo.c \
+	$(SRC_DIR)/builtin/builtin_pwd.c \
+	$(SRC_DIR)/builtin/builtin_cd.c \
+	$(SRC_DIR)/builtin/builtin_env.c \
+	$(SRC_DIR)/builtin/builtin_exit.c \
+	$(SRC_DIR)/builtin/builtin_export.c \
+	$(SRC_DIR)/builtin/export_env.c \
+	$(SRC_DIR)/builtin/export_print.c \
+	$(SRC_DIR)/builtin/builtin_unset.c
 
 OBJS		= $(SRCS:.c=.o)
 
