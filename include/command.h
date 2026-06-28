@@ -6,7 +6,7 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 22:13:00 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/25 19:55:51 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/06/27 23:35:24 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ int						add_word(t_ast *node, char *value);
 int						exec_ast(t_shell *shell, t_ast *node);
 int						exec_cmd(t_shell *shell, t_ast *node);
 char					*find_cmd_path(char *cmd, char **envp);
+int						exec_redir(t_shell *shell, t_ast *node);
 
 #endif

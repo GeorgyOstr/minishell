@@ -52,7 +52,8 @@ SRCS		= \
 	$(SRC_DIR)/builtin/builtin_export.c \
 	$(SRC_DIR)/builtin/export_env.c \
 	$(SRC_DIR)/builtin/export_print.c \
-	$(SRC_DIR)/builtin/builtin_unset.c
+	$(SRC_DIR)/builtin/builtin_unset.c \
+	$(SRC_DIR)/execve/exec_redir.c
 
 OBJS		= $(SRCS:.c=.o)
 
