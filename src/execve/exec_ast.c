@@ -6,7 +6,7 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 21:37:10 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/27 23:38:57 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/06/29 18:22:32 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,7 @@ int	exec_ast(t_shell *shell, t_ast *node)
 		return (exec_cmd(shell, node));
 	if (node->type == NODE_REDIR)
 		return (exec_redir(shell, node));
+	if (node->type == NODE_PIPE)
+		return (exec_pipe(shell, node));
 	return (1);
 }

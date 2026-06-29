@@ -41,6 +41,7 @@ SRCS		= \
 	$(SRC_DIR)/utils/clear_cmd.c \
 	$(SRC_DIR)/utils/free_tokens.c\
 	$(SRC_DIR)/execve/exec_ast.c \
+	$(SRC_DIR)/execve/exec_pipe.c \
 	$(SRC_DIR)/execve/find_cmd_path.c \
 	$(SRC_DIR)/execve/exec_utils.c \
 	$(SRC_DIR)/builtin/builtin.c \
@@ -53,7 +54,8 @@ SRCS		= \
 	$(SRC_DIR)/builtin/export_env.c \
 	$(SRC_DIR)/builtin/export_print.c \
 	$(SRC_DIR)/builtin/builtin_unset.c \
-	$(SRC_DIR)/execve/exec_redir.c
+	$(SRC_DIR)/execve/exec_redir.c \
+	$(SRC_DIR)/execve/exec_heredoc.c
 
 OBJS		= $(SRCS:.c=.o)
 

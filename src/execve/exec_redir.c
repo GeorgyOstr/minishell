@@ -6,7 +6,7 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 23:36:00 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/28 19:17:23 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/06/29 20:39:10 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	exec_redir(t_shell *shell, t_ast *node)
 	int	target;
 	int	status;
 
+	if (node->redir_type == T_HEREDOC)
+		return (exec_heredoc(shell, node));
 	fd = open_redir_file(node);
 	if (fd < 0)
 	{
