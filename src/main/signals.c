@@ -6,11 +6,12 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 00:00:00 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/30 00:00:00 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/06/30 23:37:46 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+#include <stdio.h>
 #include <signal.h>
 #include <unistd.h>
 #include <readline/readline.h>
