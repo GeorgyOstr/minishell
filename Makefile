@@ -56,7 +56,11 @@ SRCS		= \
 	$(SRC_DIR)/builtin/export_print.c \
 	$(SRC_DIR)/builtin/builtin_unset.c \
 	$(SRC_DIR)/execve/exec_redir.c \
-	$(SRC_DIR)/execve/exec_heredoc.c
+	$(SRC_DIR)/execve/exec_heredoc.c \
+	$(SRC_DIR)/expander/expand_word.c \
+	$(SRC_DIR)/expander/expand_dollar.c \
+	$(SRC_DIR)/expander/expand_utils.c \
+	$(SRC_DIR)/expander/expand_ast.c
 
 OBJS		= $(SRCS:.c=.o)
 

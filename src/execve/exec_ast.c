@@ -6,7 +6,7 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 21:37:10 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/29 18:22:32 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/06/30 17:12:49 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "shell.h"
 #include "builtin.h"
+#include "expander.h"
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -90,9 +91,17 @@ int	exec_ast(t_shell *shell, t_ast *node)
 	if (!node)
 		return (0);
 	if (node->type == NODE_CMD)
+	{
+		if (expand_ast(node, shell) != 0)
+			return (1);
 		return (exec_cmd(shell, node));
+	}
 	if (node->type == NODE_REDIR)
+	{
+		if (expand_ast(node, shell) != 0)
+			return (1);
 		return (exec_redir(shell, node));
+	}
 	if (node->type == NODE_PIPE)
 		return (exec_pipe(shell, node));
 	return (1);
