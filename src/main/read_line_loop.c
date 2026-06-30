@@ -11,12 +11,12 @@
 /* ************************************************************************** */
 
 #include "shell.h"
+#include "libft.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <readline/history.h>
 #include <readline/readline.h>
-
 static int	is_only_space(char *line);
 void		read_line_loop(t_shell *shell);
 static void	handle_line(t_shell *shell, char *line);
@@ -53,13 +53,23 @@ void	read_line_loop(t_shell *shell)
 	rl_outstream = stderr;
 	while (!shell->should_exit)
 	{
+		setup_signals_interactive();
 		if (isatty(STDIN_FILENO))
 			prompt = "minishell$ ";
 		else
 			prompt = "";
 		line = readline(prompt);
+		if (g_signal == SIGINT)
+		{
+			shell->last_status = 130;
+			g_signal = 0;
+		}
 		if (line == NULL)
+		{
+			if (isatty(STDIN_FILENO))
+				ft_putendl_fd("exit", STDERR_FILENO);
 			break ;
+		}
 		handle_line(shell, line);
 		free(line);
 	}

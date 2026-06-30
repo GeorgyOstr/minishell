@@ -33,6 +33,7 @@ SRCS		= \
 	$(SRC_DIR)/main/minishell.c \
 	$(SRC_DIR)/main/read_line_loop.c \
 	$(SRC_DIR)/main/make_cmd.c \
+	$(SRC_DIR)/main/signals.c \
 	$(SRC_DIR)/lexer/lexer.c \
 	$(SRC_DIR)/parser/parse_pipe.c \
 	$(SRC_DIR)/parser/parse_command.c \

@@ -13,9 +13,11 @@
 #include "command.h"
 #include "libft.h"
 #include "shell.h"
+#include <signal.h>
 #include <stdio.h>
 #include <readline/readline.h>
 #include <stdlib.h>
+#include <sys/wait.h>
 #include <unistd.h>
 
 static int	write_line_to_pipe(int fd, char *line)
@@ -74,21 +76,66 @@ static int	restore_stdin(int backup)
 	return (0);
 }
 
+/*
+** Heredoc reader child. Uses default signals so Ctrl+C terminates it,
+** which lets the parent know the heredoc was cancelled.
+*/
+static void	heredoc_child(t_ast *node, int pipefd[2])
+{
+	setup_signals_child();
+	close(pipefd[0]);
+	if (read_heredoc_lines(node, pipefd[1]))
+	{
+		close(pipefd[1]);
+		exit(1);
+	}
+	close(pipefd[1]);
+	exit(0);
+}
+
+/*
+** Fork the heredoc reader. Returns 0 on success, 130 if cancelled with
+** Ctrl+C, and 1 on any other error.
+*/
+static int	run_heredoc_input(t_ast *node, int pipefd[2])
+{
+	pid_t	pid;
+	int		status;
+
+	pid = fork();
+	if (pid < 0)
+		return (close(pipefd[1]), perror("minishell: fork"), 1);
+	if (pid == 0)
+		heredoc_child(node, pipefd);
+	close(pipefd[1]);
+	setup_signals_exec();
+	waitpid(pid, &status, 0);
+	setup_signals_interactive();
+	if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
+	{
+		write(STDOUT_FILENO, "\n", 1);
+		return (130);
+	}
+	if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
+		return (1);
+	return (0);
+}
+
 int	exec_heredoc(t_shell *shell, t_ast *node)
 {
 	int	pipefd[2];
 	int	backup;
 	int	status;
+	int	rc;
 
 	if (pipe(pipefd) < 0)
 		return (1);
-	if (read_heredoc_lines(node, pipefd[1]))
+	rc = run_heredoc_input(node, pipefd);
+	if (rc != 0)
 	{
 		close(pipefd[0]);
-		close(pipefd[1]);
-		return (1);
+		return (rc);
 	}
-	close(pipefd[1]);
 	if (set_heredoc_stdin(pipefd[0], &backup))
 	{
 		close(pipefd[0]);

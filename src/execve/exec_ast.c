@@ -29,6 +29,7 @@ void	exec_child(t_shell *shell, t_ast *node)
 	char	*path;
 	int		err;
 
+	setup_signals_child();
 	path = find_cmd_path(node->argv[0], shell->envp);
 	if (!path)
 	{
@@ -45,14 +46,32 @@ void	exec_child(t_shell *shell, t_ast *node)
 	exit(127);
 }
 
+static int	wait_child(pid_t pid)
+{
+	int	status;
+
+	setup_signals_exec();
+	waitpid(pid, &status, 0);
+	setup_signals_interactive();
+	if (WIFSIGNALED(status))
+	{
+		if (WTERMSIG(status) == SIGQUIT)
+			ft_putendl_fd("Quit (core dumped)", 2);
+		else if (WTERMSIG(status) == SIGINT)
+			write(STDOUT_FILENO, "\n", 1);
+		return (128 + WTERMSIG(status));
+	}
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	return (1);
+}
+
 int	exec_cmd(t_shell *shell, t_ast *node)
 {
 	pid_t	pid;
-	int		status;
 
 	if (!node || !node->argv || !node->argv[0])
 		return (0);
-
 	if (is_builtin(node->argv[0]))
 		return (exec_builtin(shell, node->argv));
 	pid = fork();
@@ -63,10 +82,7 @@ int	exec_cmd(t_shell *shell, t_ast *node)
 	}
 	if (pid == 0)
 		exec_child(shell, node);
-	waitpid(pid, &status, 0);
-	if (WIFEXITED(status))
-		return (WEXITSTATUS(status));
-	return (1);
+	return (wait_child(pid));
 }
 
 int	exec_ast(t_shell *shell, t_ast *node)
