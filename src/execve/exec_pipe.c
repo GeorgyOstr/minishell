@@ -12,6 +12,7 @@
 
 #include "command.h"
 #include "shell.h"
+#include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/wait.h>
@@ -25,6 +26,7 @@ static void	close_pipe_fd(int pipefd[2])
 
 static void	exec_left_child(t_shell *shell, t_ast *node, int pipefd[2])
 {
+	setup_signals_child();
 	if (dup2(pipefd[1], STDOUT_FILENO) < 0)
 	{
 		perror("minishell: dup2");
@@ -36,6 +38,7 @@ static void	exec_left_child(t_shell *shell, t_ast *node, int pipefd[2])
 
 static void	exec_right_child(t_shell *shell, t_ast *node, int pipefd[2])
 {
+	setup_signals_child();
 	if (dup2(pipefd[0], STDIN_FILENO) < 0)
 	{
 		perror("minishell: dup2");
@@ -49,8 +52,18 @@ static int	wait_pipe(pid_t left_pid, pid_t right_pid)
 {
 	int	status;
 
+	setup_signals_exec();
 	waitpid(left_pid, NULL, 0);
 	waitpid(right_pid, &status, 0);
+	setup_signals_interactive();
+	if (WIFSIGNALED(status))
+	{
+		if (WTERMSIG(status) == SIGQUIT)
+			ft_putendl_fd("Quit (core dumped)", 2);
+		else if (WTERMSIG(status) == SIGINT)
+			write(STDOUT_FILENO, "\n", 1);
+		return (128 + WTERMSIG(status));
+	}
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	return (1);
