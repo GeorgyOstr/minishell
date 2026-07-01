@@ -6,7 +6,7 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 23:16:07 by hisasano          #+#    #+#             */
-/*   Updated: 2026/07/01 12:37:27 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 16:22:26 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int	exec_exit(char **argv, t_shell *shell)
 	{
 		print_exit_error(argv[1], "numeric argument required");
 		shell->should_exit = 1;
-		shell->last_status = 255;
-		return (255);
+		shell->last_status = 2;
+		return (shell->last_status);
 	}
 	if (argc > 2)
 	{
@@ -79,6 +79,6 @@ int	exec_exit(char **argv, t_shell *shell)
 		return (1);
 	}
 	shell->should_exit = 1;
-	shell->last_status = ft_atoi(argv[1]);
+	shell->last_status = (unsigned char)ft_atoi(argv[1]);
 	return (shell->last_status);
 }

@@ -6,13 +6,12 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 21:45:18 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/27 21:42:12 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 16:29:59 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 #include "libft.h"
-#include <stdio.h>
 #include <unistd.h>
 
 static int	is_option_n(char *str)
@@ -56,6 +55,3 @@ int	exec_echo(char **argv)
 		write(1, "\n", 1);
 	return (0);
 }
-
-// echo -nn -nnnn hello ⚪︎ hello
-// ×  -nnnn hello
