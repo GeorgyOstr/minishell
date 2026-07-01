@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   add_word.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 18:12:42 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/23 18:22:48 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 13:32:06 by gostroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "command.h"
 #include "libft.h"
+#include <stdlib.h>
 
 static int	argv_len(char **argv);
-int	add_word(t_ast *node, char *value);
+int			add_word(t_ast *node, char *value);
 
 static int	argv_len(char **argv)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 21:52:15 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/19 14:46:26 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 13:41:41 by gostroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,16 @@ typedef enum e_token_type
 	T_REDIR_OUT,
 	T_APPEND,
 	T_HEREDOC
-}	t_token_type;
+}					t_token_type;
 
 typedef struct s_token
 {
 	char			*value;
 	t_token_type	type;
 	struct s_token	*next;
-}	t_token;
+}					t_token;
 
-int     lexer(t_token **tokens, char *line);
-void	free_tokens(t_token *token);
+int					lexer(t_token **tokens, char *line);
+void				free_tokens(t_token *token);
 
 #endif
-
-	// T_WORD, = str
-	// T_PIPE, =  |
-	// T_REDIR_IN, = <
-	// T_REDIR_OUT, = >
-	// T_APPEND, = >>
-	// T_HEREDOCv = <<

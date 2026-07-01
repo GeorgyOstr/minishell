@@ -1,14 +1,14 @@
+#include "command.h"
 #include "shell.h"
 #include "token.h"
-#include "command.h"
 
-static void test_print_tokens(t_token *tokens)
+static void	test_print_tokens(t_token *tokens)
 {
-    while(tokens)
-    {
-        printf("value=[%s] type=%d\n", tokens->value, tokens->type);
-        tokens = tokens->next;
-    }
+	while (tokens)
+	{
+		printf("value=[%s] type=%d\n", tokens->value, tokens->type);
+		tokens = tokens->next;
+	}
 }
 
 static void	print_indent(int depth)
@@ -19,7 +19,7 @@ static void	print_indent(int depth)
 
 static void	test_print_ast(t_ast *node, int depth)
 {
-	int	i;
+	int i;
 
 	if (!node)
 		return ;

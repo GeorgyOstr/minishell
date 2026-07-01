@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 21:09:00 by hisasano          #+#    #+#             */
-/*   Updated: 2026/07/01 10:34:55 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 13:32:09 by gostroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int		is_redir(t_token_type type);
 static t_ast	*make_redir_node(t_token *op, t_token *file);
 static void		append_redir(t_ast **tree, t_ast *cmd, t_ast *redir);
 static int		handle_redir(t_token **tokens, int *pos, t_ast **tree,
-				t_ast *cmd);
+					t_ast *cmd);
 t_ast			*parse_command(t_token *tokens, int start, int end);
 
 static int	is_redir(t_token_type type)
@@ -62,8 +62,7 @@ static t_ast	*make_redir_node(t_token *op, t_token *file)
 	return (redir);
 }
 
-static int	handle_redir(t_token **tokens, int *pos, t_ast **tree,
-			t_ast *cmd)
+static int	handle_redir(t_token **tokens, int *pos, t_ast **tree, t_ast *cmd)
 {
 	t_ast	*redir;
 

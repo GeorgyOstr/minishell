@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   read_line_loop.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 20:56:01 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/30 22:25:48 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 13:54:33 by gostroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
 #include "libft.h"
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
+#include "shell.h"
 #include <readline/history.h>
 #include <readline/readline.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 static int	is_only_space(char *line);
 void		read_line_loop(t_shell *shell);
 static void	handle_line(t_shell *shell, char *line);

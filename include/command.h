@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 22:13:00 by hisasano          #+#    #+#             */
-/*   Updated: 2026/07/01 12:18:54 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 13:40:54 by gostroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@ typedef enum e_node_type
 	NODE_PIPE,
 	NODE_REDIR
 }						t_node_type;
-
-// NODE_CMD, ls -a
-// NODE_PIPE,　|
-// NODE_REDIR　> >> < <<
 
 typedef enum e_redir_type
 {

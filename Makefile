@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/01 12:55:36 by hisasano          #+#    #+#              #
-#    Updated: 2026/07/01 12:55:39 by hisasano         ###   ########.fr        #
+#    Updated: 2026/07/01 13:51:29 by gostroum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,6 @@ SRCS		= \
 	$(SRC_DIR)/parser/parse_command.c \
 	$(SRC_DIR)/parser/add_word.c \
 	$(SRC_DIR)/utils/free_arr.c \
-	$(SRC_DIR)/utils/clear_cmd.c \
 	$(SRC_DIR)/utils/free_tokens.c\
 	$(SRC_DIR)/execve/exec_ast.c \
 	$(SRC_DIR)/execve/exec_pipe.c \

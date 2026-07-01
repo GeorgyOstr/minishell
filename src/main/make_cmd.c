@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   make_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 22:41:33 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/25 20:09:51 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 13:46:08 by gostroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "command.h"
-#include "token.h"
 #include "shell.h"
+#include "token.h"
+#include <stdio.h>
 
-static int token_count(t_token *tokens);
-int	make_cmd(t_shell *shell, char *line);
+static int	token_count(t_token *tokens);
+int			make_cmd(t_shell *shell, char *line);
 
-static int token_count(t_token *tokens)
+static int	token_count(t_token *tokens)
 {
-	t_token *head;
-	int i;
+	t_token	*head;
+	int		i;
 
 	head = tokens;
-	i = 0; 
-	while(head)
+	i = 0;
+	while (head)
 	{
 		i++;
 		head = head->next;
@@ -35,9 +35,7 @@ static int token_count(t_token *tokens)
 
 int	make_cmd(t_shell *shell, char *line)
 {
-    t_token *tokens;
-
-	// (void)shell;
+	t_token	*tokens;
 
 	tokens = NULL;
 	if (lexer(&tokens, line) != 0)
