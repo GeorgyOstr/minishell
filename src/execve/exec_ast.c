@@ -6,24 +6,31 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 21:37:10 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/30 17:12:49 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 10:20:59 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "builtin.h"
 #include "command.h"
+#include "expander.h"
 #include "libft.h"
 #include "shell.h"
-#include "builtin.h"
-#include "expander.h"
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
-void	exec_child(t_shell *shell, t_ast *node);
-int		exec_cmd(t_shell *shell, t_ast *node);
-int		exec_ast(t_shell *shell, t_ast *node);
+void		exec_child(t_shell *shell, t_ast *node);
+int			exec_cmd(t_shell *shell, t_ast *node);
+int			exec_ast(t_shell *shell, t_ast *node);
+
+static int	exec_empty_command(char *cmd)
+{
+	ft_putstr_fd("minishell: command not found: ", STDERR_FILENO);
+	ft_putendl_fd(cmd, STDERR_FILENO);
+	return (127);
+}
 
 void	exec_child(t_shell *shell, t_ast *node)
 {
@@ -73,6 +80,8 @@ int	exec_cmd(t_shell *shell, t_ast *node)
 
 	if (!node || !node->argv || !node->argv[0])
 		return (0);
+	if (node->argv[0][0] == '\0')
+		return (exec_empty_command(node->argv[0]));
 	if (is_builtin(node->argv[0]))
 		return (exec_builtin(shell, node->argv));
 	pid = fork();
