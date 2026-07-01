@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 22:40:59 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/27 22:31:05 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 14:09:59 by gostroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static int		is_space(char c);
-static int		is_operator(char c);
 static size_t	word_len(char *str);
 static int		add_operator(t_token **tokens, char *line, int i);
 static t_token	*new_token(char *value, t_token_type type);
 static void		add_token(t_token **head, t_token *new);
 int				lexer(t_token **tokens, char *line);
-
-static int	is_space(char c)
-{
-	return (c == ' ' || c == '\t' || c == '\n');
-}
-
-static int	is_operator(char c)
-{
-	return (c == '|' || c == '<' || c == '>');
-}
 
 static size_t	word_len(char *str)
 {

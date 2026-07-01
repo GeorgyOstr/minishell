@@ -6,7 +6,7 @@
 /*   By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 20:56:01 by hisasano          #+#    #+#             */
-/*   Updated: 2026/07/01 13:54:33 by gostroum         ###   ########.fr       */
+/*   Updated: 2026/07/01 14:15:18 by gostroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,9 @@ void	read_line_loop(t_shell *shell)
 	while (!shell->should_exit)
 	{
 		setup_signals_interactive();
+		prompt = "";
 		if (isatty(STDIN_FILENO))
 			prompt = "minishell$ ";
-		else
-			prompt = "";
 		line = readline(prompt);
 		if (g_signal == SIGINT)
 		{
@@ -74,5 +73,4 @@ void	read_line_loop(t_shell *shell)
 		handle_line(shell, line);
 		free(line);
 	}
-	return ;
 }

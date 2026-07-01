@@ -6,7 +6,7 @@
 #    By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/01 12:55:36 by hisasano          #+#    #+#              #
-#    Updated: 2026/07/01 13:51:29 by gostroum         ###   ########.fr        #
+#    Updated: 2026/07/01 14:05:00 by gostroum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS		= \
 	$(SRC_DIR)/main/read_line_loop.c \
 	$(SRC_DIR)/main/make_cmd.c \
 	$(SRC_DIR)/main/signals.c \
+	$(SRC_DIR)/lexer/lexer_is.c \
 	$(SRC_DIR)/lexer/lexer.c \
 	$(SRC_DIR)/parser/parse_pipe.c \
 	$(SRC_DIR)/parser/parse_command.c \
