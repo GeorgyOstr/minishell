@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 19:10:00 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/27 21:34:16 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 13:55:34 by gostroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	exec_unset(char **argv, t_shell *shell)
 {
 	if (!argv)
 		return (1);
-    argv++;
+	argv++;
 	while (*argv)
 	{
 		remove_env_var(shell, *argv);

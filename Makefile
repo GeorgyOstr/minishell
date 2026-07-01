@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/07/01 12:55:36 by hisasano          #+#    #+#              #
+#    Updated: 2026/07/01 14:37:55 by gostroum         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME		= minishell
 
 CC			= cc
@@ -34,12 +46,12 @@ SRCS		= \
 	$(SRC_DIR)/main/read_line_loop.c \
 	$(SRC_DIR)/main/make_cmd.c \
 	$(SRC_DIR)/main/signals.c \
+	$(SRC_DIR)/lexer/lexer_is.c \
 	$(SRC_DIR)/lexer/lexer.c \
 	$(SRC_DIR)/parser/parse_pipe.c \
 	$(SRC_DIR)/parser/parse_command.c \
 	$(SRC_DIR)/parser/add_word.c \
 	$(SRC_DIR)/utils/free_arr.c \
-	$(SRC_DIR)/utils/clear_cmd.c \
 	$(SRC_DIR)/utils/free_tokens.c\
 	$(SRC_DIR)/execve/exec_ast.c \
 	$(SRC_DIR)/execve/exec_pipe.c \
@@ -56,7 +68,12 @@ SRCS		= \
 	$(SRC_DIR)/builtin/export_print.c \
 	$(SRC_DIR)/builtin/builtin_unset.c \
 	$(SRC_DIR)/execve/exec_redir.c \
-	$(SRC_DIR)/execve/exec_heredoc.c
+	$(SRC_DIR)/execve/exec_heredoc.c \
+	$(SRC_DIR)/expander/expand_word.c \
+	$(SRC_DIR)/expander/expand_dollar.c \
+	$(SRC_DIR)/expander/expand_utils.c \
+	$(SRC_DIR)/expander/expand_ast.c \
+	$(SRC_DIR)/execve/exec_redir_prepare.c
 
 OBJS		= $(SRCS:.c=.o)
 

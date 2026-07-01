@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 19:07:08 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/27 19:07:12 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 13:45:19 by gostroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	find_env_index(char **envp, char *key)
 	while (envp[i])
 	{
 		if (ft_strncmp(envp[i], key, len) == 0 && (envp[i][len] == '='
-				|| envp[i][len] == '\0'))
+			|| envp[i][len] == '\0'))
 			return (i);
 		i++;
 	}

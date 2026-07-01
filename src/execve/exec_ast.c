@@ -3,26 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   exec_ast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 21:37:10 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/29 18:22:32 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 14:35:06 by gostroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "builtin.h"
 #include "command.h"
+#include "expander.h"
 #include "libft.h"
 #include "shell.h"
-#include "builtin.h"
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
-void	exec_child(t_shell *shell, t_ast *node);
-int		exec_cmd(t_shell *shell, t_ast *node);
-int		exec_ast(t_shell *shell, t_ast *node);
+void		exec_child(t_shell *shell, t_ast *node);
+int			exec_cmd(t_shell *shell, t_ast *node);
+int			exec_ast(t_shell *shell, t_ast *node);
+
+static int	exec_empty_command(char *cmd)
+{
+	ft_putstr_fd("minishell: command not found: ", STDERR_FILENO);
+	ft_putendl_fd(cmd, STDERR_FILENO);
+	return (127);
+}
 
 void	exec_child(t_shell *shell, t_ast *node)
 {
@@ -72,6 +80,8 @@ int	exec_cmd(t_shell *shell, t_ast *node)
 
 	if (!node || !node->argv || !node->argv[0])
 		return (0);
+	if (node->argv[0][0] == '\0')
+		return (exec_empty_command(node->argv[0]));
 	if (is_builtin(node->argv[0]))
 		return (exec_builtin(shell, node->argv));
 	pid = fork();
@@ -90,9 +100,17 @@ int	exec_ast(t_shell *shell, t_ast *node)
 	if (!node)
 		return (0);
 	if (node->type == NODE_CMD)
+	{
+		if (expand_ast(node, shell) != 0)
+			return (1);
 		return (exec_cmd(shell, node));
+	}
 	if (node->type == NODE_REDIR)
+	{
+		if (expand_ast(node, shell) != 0)
+			return (1);
 		return (exec_redir(shell, node));
+	}
 	if (node->type == NODE_PIPE)
 		return (exec_pipe(shell, node));
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 21:09:00 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/23 18:15:58 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 13:32:09 by gostroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 #include <stdlib.h>
 
 static int		is_redir(t_token_type type);
-static t_ast	*make_redir_node(t_token *op, t_token *file, t_ast *tree);
-static int		handle_redir(t_token **tokens, int *pos, t_ast **tree);
+static t_ast	*make_redir_node(t_token *op, t_token *file);
+static void		append_redir(t_ast **tree, t_ast *cmd, t_ast *redir);
+static int		handle_redir(t_token **tokens, int *pos, t_ast **tree,
+					t_ast *cmd);
 t_ast			*parse_command(t_token *tokens, int start, int end);
 
 static int	is_redir(t_token_type type)
@@ -26,7 +28,24 @@ static int	is_redir(t_token_type type)
 		|| type == T_HEREDOC);
 }
 
-static t_ast	*make_redir_node(t_token *op, t_token *file, t_ast *tree)
+static void	append_redir(t_ast **tree, t_ast *cmd, t_ast *redir)
+{
+	t_ast	*cur;
+
+	if (*tree == cmd)
+	{
+		redir->left = cmd;
+		*tree = redir;
+		return ;
+	}
+	cur = *tree;
+	while (cur->left != cmd)
+		cur = cur->left;
+	redir->left = cmd;
+	cur->left = redir;
+}
+
+static t_ast	*make_redir_node(t_token *op, t_token *file)
 {
 	t_ast	*redir;
 
@@ -40,20 +59,19 @@ static t_ast	*make_redir_node(t_token *op, t_token *file, t_ast *tree)
 		free_ast(redir);
 		return (NULL);
 	}
-	redir->left = tree;
 	return (redir);
 }
 
-static int	handle_redir(t_token **tokens, int *pos, t_ast **tree)
+static int	handle_redir(t_token **tokens, int *pos, t_ast **tree, t_ast *cmd)
 {
 	t_ast	*redir;
 
 	if (!(*tokens)->next || (*tokens)->next->type != T_WORD)
 		return (1);
-	redir = make_redir_node(*tokens, (*tokens)->next, *tree);
+	redir = make_redir_node(*tokens, (*tokens)->next);
 	if (!redir)
 		return (1);
-	*tree = redir;
+	append_redir(tree, cmd, redir);
 	*tokens = (*tokens)->next;
 	(*pos)++;
 	return (0);
@@ -79,7 +97,7 @@ t_ast	*parse_command(t_token *tokens, int start, int end)
 		}
 		else if (pos >= start && is_redir(tokens->type))
 		{
-			if (handle_redir(&tokens, &pos, &tree) != 0)
+			if (handle_redir(&tokens, &pos, &tree, cmd) != 0)
 				return (free_ast(tree), NULL);
 		}
 		tokens = tokens->next;

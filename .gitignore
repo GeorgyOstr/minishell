@@ -4,3 +4,6 @@
 *.o
 *.patch
 minishell
+.tmp_minishell_full_test/
+mini.out
+mini.err

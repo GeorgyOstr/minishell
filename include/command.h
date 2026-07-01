@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 22:13:00 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/29 19:54:18 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 13:40:54 by gostroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@ typedef enum e_node_type
 	NODE_PIPE,
 	NODE_REDIR
 }						t_node_type;
-
-// NODE_CMD, ls -a
-// NODE_PIPE,　|
-// NODE_REDIR　> >> < <<
 
 typedef enum e_redir_type
 {
@@ -55,7 +51,9 @@ int						exec_ast(t_shell *shell, t_ast *node);
 int						exec_cmd(t_shell *shell, t_ast *node);
 char					*find_cmd_path(char *cmd, char **envp);
 int						exec_redir(t_shell *shell, t_ast *node);
-int						exec_heredoc(t_shell *shell, t_ast *node);
 int						exec_pipe(t_shell *shell, t_ast *node);
+int						open_heredoc_fd(t_ast *node, int *read_fd);
+int						prepare_one_redir(t_ast *node, int *in_fd, int *out_fd);
+int						open_heredoc_fd(t_ast *node, int *read_fd);
 
 #endif

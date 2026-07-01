@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lexer_is.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/08 19:30:22 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/30 22:41:46 by hisasano         ###   ########.fr       */
+/*   Created: 2026/07/01 14:03:28 by gostroum          #+#    #+#             */
+/*   Updated: 2026/07/01 14:09:25 by gostroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "token.h"
 
-int	main(int ac, char **av, char **envp)
+int	is_space(char c)
 {
-	(void)ac;
-	(void)av;
-	return (minishell(envp));
+	return (c == ' ' || c == '\t' || c == '\n');
+}
+
+int	is_operator(char c)
+{
+	return (c == '|' || c == '<' || c == '>');
 }

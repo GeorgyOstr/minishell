@@ -6,7 +6,7 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 22:04:20 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/25 19:58:51 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 10:20:40 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ char	*find_cmd_path(char *cmd, char **envp)
 	char	*path_env;
 	char	**paths;
 
+	if (!cmd || cmd[0] == '\0')
+		return (NULL);
 	path = check_direct_path(cmd);
 	if (path)
 		return (path);

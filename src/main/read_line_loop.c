@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   read_line_loop.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 20:56:01 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/27 22:39:13 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 14:38:50 by gostroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
 #include "libft.h"
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
+#include "shell.h"
 #include <readline/history.h>
 #include <readline/readline.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 static int	is_only_space(char *line);
 void		read_line_loop(t_shell *shell);
 static void	handle_line(t_shell *shell, char *line);
@@ -54,10 +55,9 @@ void	read_line_loop(t_shell *shell)
 	while (!shell->should_exit)
 	{
 		setup_signals_interactive();
+		prompt = "";
 		if (isatty(STDIN_FILENO))
 			prompt = "minishell$ ";
-		else
-			prompt = "";
 		line = readline(prompt);
 		if (g_signal == SIGINT)
 		{
@@ -73,5 +73,4 @@ void	read_line_loop(t_shell *shell)
 		handle_line(shell, line);
 		free(line);
 	}
-	return ;
 }

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: gostroum <gostroum@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 00:00:00 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/30 00:00:00 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 14:36:59 by gostroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+#include <stdio.h>
 #include <signal.h>
 #include <unistd.h>
 #include <readline/readline.h>
