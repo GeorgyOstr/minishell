@@ -10,7 +10,7 @@ The goal of this project is to recreate a simplified version of Bash and to lear
 
 The shell displays an interactive prompt, reads user input, tokenizes and parses the command line, expands environment variables, and executes built-in or external commands.
 
-## Features
+### Features
 
 - Interactive prompt using `readline`
 - Command history
@@ -43,7 +43,7 @@ The shell displays an interactive prompt, reads user input, tokenizes and parses
   - `Ctrl-D`
   - `Ctrl-\`
 
-## Project Structure
+### Project Structure
 
 ```text
 .
@@ -57,26 +57,8 @@ The shell displays an interactive prompt, reads user input, tokenizes and parses
 │   ├── builtin/    Built-in command implementations
 │   ├── utils/      Utility functions
 │   └── libft/      Personal libft library
-├── testfield/      Local test scripts
 └── Makefile
 ```
-
-## Implementation Overview
-
-The project was implemented step by step:
-
-1. Create the main `t_shell` structure to store shell state.
-2. Build the `readline` loop and prompt.
-3. Implement the lexer to split input into tokens.
-4. Implement the parser to build an AST.
-5. Execute a single external command with `fork`, `execve`, and `waitpid`.
-6. Add `PATH` search.
-7. Implement built-in commands.
-8. Implement redirections with `open` and `dup2`.
-9. Implement pipes with `pipe`, `fork`, and `dup2`.
-10. Implement expansion for `$VAR` and `$?`.
-11. Add signal handling.
-12. Check memory leaks and file descriptor leaks.
 
 ## Instructions
 
