@@ -60,7 +60,8 @@ SRCS		= \
 	$(SRC_DIR)/expander/expand_word.c \
 	$(SRC_DIR)/expander/expand_dollar.c \
 	$(SRC_DIR)/expander/expand_utils.c \
-	$(SRC_DIR)/expander/expand_ast.c
+	$(SRC_DIR)/expander/expand_ast.c \
+	$(SRC_DIR)/execve/exec_redir_prepare.c
 
 OBJS		= $(SRCS:.c=.o)
 

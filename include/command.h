@@ -6,7 +6,7 @@
 /*   By: hisasano <hisasano@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 22:13:00 by hisasano          #+#    #+#             */
-/*   Updated: 2026/06/29 19:54:18 by hisasano         ###   ########.fr       */
+/*   Updated: 2026/07/01 12:18:54 by hisasano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ int						exec_ast(t_shell *shell, t_ast *node);
 int						exec_cmd(t_shell *shell, t_ast *node);
 char					*find_cmd_path(char *cmd, char **envp);
 int						exec_redir(t_shell *shell, t_ast *node);
-int						exec_heredoc(t_shell *shell, t_ast *node);
 int						exec_pipe(t_shell *shell, t_ast *node);
+int						open_heredoc_fd(t_ast *node, int *read_fd);
+int						prepare_one_redir(t_ast *node, int *in_fd, int *out_fd);
+int						open_heredoc_fd(t_ast *node, int *read_fd);
 
 #endif
