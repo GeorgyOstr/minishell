@@ -42,17 +42,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str[i + j] = '\0';
 	return (str);
 }
-
-// #include <stdio.h>
-
-// int main()
-// {
-//     char s1[] = "12345";
-//     char s2[] = "abcde";
-
-//     char *result = ft_strjoin(s1, s2);
-
-//     printf("%s", result);
-
-//     return (0);
-// }

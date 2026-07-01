@@ -53,30 +53,3 @@ char	*ft_itoa(int n)
 		result[0] = '-';
 	return (result);
 }
-
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	int i = 2147483647;
-// 	int j = -2147483648;
-// int	k = 0;
-
-// 	char *result_0;
-// 	char *result_1;
-// char *result_2;
-
-// 	result_0 = ft_itoa(i);
-// 	result_1 = ft_itoa(j);
-// result_2 = ft_itoa(k);
-
-// 	printf("%d : %s\n", i, result_0);
-// 	printf("%d : %s\n", j, result_1);
-// printf("%d : %s\n", k, result_2);
-
-// 	free(result_0);
-// 	free(result_1);
-// free(result_2);
-
-// 	return (0);
-// }

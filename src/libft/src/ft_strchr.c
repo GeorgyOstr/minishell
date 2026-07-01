@@ -27,15 +27,3 @@ char	*ft_strchr(const char *s, int c)
 	}
 	return ((char *)&s[i]);
 }
-
-// #include <stdio.h>
-
-// int main()
-// {
-//     const char s[] = "1234a6789";
-//     int c = 'a';
-
-//     printf("%c : %s", c, ft_strchr(s, c));
-
-//     return (0);
-// }

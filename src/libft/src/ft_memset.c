@@ -26,16 +26,3 @@ void	*ft_memset(void *s, int c, size_t n)
 	}
 	return (s);
 }
-
-// #include <stdio.h>
-
-// int main()
-// {
-//     char str[6] = "Hello";
-
-//     printf("Before: %s\n", str);
-//     ft_memset(str, -191, 3);
-//     printf("After : %s\n", str);
-
-//     return (0);
-// }

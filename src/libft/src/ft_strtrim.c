@@ -44,26 +44,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 		end--;
 	return (ft_substr(s1, start, end - start + 1));
 }
-
-// #include <stdio.h>
-
-// void test_trim(char *s1, char *set)
-// {
-//     char *result = ft_strtrim(s1, set);
-//     printf("s1    = \"%s\"\n", s1);
-//     printf("set   = \"%s\"\n", set);
-//     printf("result= \"%s\"\n", result);
-//     printf("--------\n");
-//     free(result);
-// }
-// int main()
-// {
-//     test_trim("-=-=---a-b=c-=-=---", "-=");   // normal
-//     test_trim("", "-=");                      // 空文字
-//     test_trim("----====---", "-=");           // 全部セット文字
-//     test_trim("abcdef", "-=");                // セットに存在しない
-//     test_trim("---abc---", "a-");             // 一部トリム
-//     test_trim("123", "");                     // setが空
-//     test_trim(NULL, "-=");                    // s1 NULL
-//     test_trim("abc", NULL);
-// }

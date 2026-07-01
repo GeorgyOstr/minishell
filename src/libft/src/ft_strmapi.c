@@ -32,19 +32,3 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	result[i] = '\0';
 	return (result);
 }
-
-// #include <stdio.h>
-
-// char	my_test(unsigned int i, char c)
-// {
-// 	return (c + i);
-// }
-
-// int main()
-// {
-// 	const	char *s = "11111";
-
-// 	printf("%s\n",ft_strmapi(s, my_test));
-
-// 	return (0);
-// }

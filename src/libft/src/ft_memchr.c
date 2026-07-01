@@ -29,18 +29,3 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (NULL);
 }
-
-// #include <stdio.h>
-
-// int main()
-// {
-//     char str[] = "abcdefg";
-//     char *result = ft_memchr(str, 'e', 7);
-
-//     if (result)
-//         printf("found: %c\n", *result);
-//     else
-//         printf("not found\n");
-
-//     return (0);
-// }

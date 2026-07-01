@@ -19,18 +19,3 @@ void	ft_putstr_fd(char *s, int fd)
 		return ;
 	write(fd, s, ft_strlen(s));
 }
-
-// #include <fcntl.h>
-
-// int main()
-// {
-// 	char	s[] = "ABCDEFG";
-
-// 	int fd = open("test.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-// 	if (fd == -1)
-// 		return (-1);
-
-// 	ft_putstr_fd(s, fd);
-
-// 	return (0);
-// }

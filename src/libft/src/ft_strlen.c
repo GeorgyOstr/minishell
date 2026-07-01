@@ -23,14 +23,3 @@ size_t	ft_strlen(const char *s)
 	}
 	return (len);
 }
-
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	const char s[] = "";
-
-// 	printf("%d\n", ft_strlen(s));
-
-// 	return (0);
-// }

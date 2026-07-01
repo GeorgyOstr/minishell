@@ -30,31 +30,3 @@ void	*ft_calloc(size_t count, size_t size)
 	ft_memset(ptr, 0, bytes);
 	return (ptr);
 }
-
-// #include <limits.h>
-// #include <stdio.h>
-// #include <stdlib.h>
-
-// int	main(void)
-// {
-// 	size_t	count;
-// 	size_t	size;
-// 	void	*ptr_1;
-// 	void	*ptr;
-
-// 	count = SIZE_MAX / 2 + 1;
-// 	size = 2;
-// 	ptr_1 = ft_calloc(count, size);
-// 	ptr = calloc(count, size);
-// 	if (!ptr)
-// 		puts("✅ calloc returned NULL (overflow detected)");
-// 	else
-// 		puts("⚠️ calloc succeeded (unexpected)");
-// 	if (!ptr_1)
-// 		puts("✅ ft_calloc returned NULL (overflow detected)");
-// 	else
-// 		puts("⚠️ ft_calloc succeeded (unexpected)");
-// 	return (0);
-// }
-
-/* SIZE_MAX = 18446744073709551615 */

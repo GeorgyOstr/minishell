@@ -32,19 +32,3 @@ void	ft_putnbr_fd(int n, int fd)
 	c = n % 10 + '0';
 	write(fd, &c, 1);
 }
-
-// #include <fcntl.h>
-
-// int main()
-// {
-// 	// int	s = 12345;
-// 	int s = 0;
-
-// 	int fd = open("test.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-// 	if (fd == -1)
-// 		return (-1);
-
-// 	ft_putnbr_fd(s, fd);
-
-// 	return (0);
-// }

@@ -117,10 +117,3 @@ int	lexer(t_token **tokens, char *line)
 	}
 	return (0);
 }
-
-// T_WORD, = str
-// T_PIPE, =  |
-// T_REDIR_IN, = <
-// T_REDIR_OUT, = >
-// T_APPEND, = >>
-// T_HEREDOC = <<

@@ -33,18 +33,3 @@ size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
 	dst[j] = '\0';
 	return (i);
 }
-
-// #include <stdio.h>
-
-// int main()
-// {
-//     size_t i = 5;
-//     char src[] = "12345\0";
-//     char dst[i];
-
-//     size_t j = ft_strlcpy(dst, src, i);
-
-//     printf("%zu", j);
-
-//     return (0);
-// }

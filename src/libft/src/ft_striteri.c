@@ -25,18 +25,3 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 		i++;
 	}
 }
-
-// #include <stdio.h>
-
-// void	test_print(unsigned int n, char *s)
-// {
-// 	printf("%d : %s\n", n, s);
-// }
-
-// int main()
-// {
-// 	char s[] = "123456789";
-// 	ft_striteri(s, test_print);
-
-// 	return (0);
-// }

@@ -24,29 +24,3 @@ t_list	*ft_lstnew(void *content)
 	node->next = NULL;
 	return (node);
 }
-
-// #include <stdio.h>
-
-// int main()
-// {
-// 	t_list *node =  ft_lstnew("abcde");
-
-// 	if (node)
-// 	{
-// 		printf("%s\n", (char *)(node->content));
-// 		printf("%c\n", *(char *)((node->content) + 2));
-// 		free(node);
-// 	}
-
-// 	int i = 12345;
-
-// 	node = ft_lstnew(&i);
-
-// 	if (node)
-// 	{
-// 		printf("%p\n", (int *)(node->content));
-// 		printf("%d\n", *(int *)(node->content));
-// 		free(node);
-// 	}
-// 	return (0);
-// }

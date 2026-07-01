@@ -38,29 +38,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	result[i] = '\0';
 	return (result);
 }
-
-// #include <stdio.h>
-
-// int main()
-// {
-// 	const char *s = "01233456789";
-// 	unsigned int  start = 4;
-
-// 	size_t len = 8;
-
-// 	char *result = ft_substr(s, start, len);
-// 	printf("%s", result);
-// 	free(result);
-
-// 	// start >= strlen(s)
-// 	char *r1 = ft_substr("test", 10, 5);  // → ""
-// 	printf("[%s]\n", r1);
-// 	free(r1);
-
-// 	// len == 0
-// 	char *r2 = ft_substr("test", 2, 0);  // → ""
-// 	printf("[%s]\n", r2);
-// 	free(r2);
-
-// 	return (0);
-// }
